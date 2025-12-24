@@ -1,5 +1,12 @@
 📰 Fake News Detection Dashboard
+🌐 Dashboard Website
+Aplikasi web dikembangkan menggunakan Streamlit dengan fitur:
 
+Pemilihan model klasifikasi
+Upload gambar kucing
+Prediksi ras kucing
+Confidence score
+Tabel probabilitas seluruh kelas
 UAP Machine Learning
 
 📌 Deskripsi Proyek
