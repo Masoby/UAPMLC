@@ -27,6 +27,10 @@ Dataset berisi teks berita berbahasa Inggris yang telah diberi label **fake** da
 
 ### Deskripsi Dataset
 - Format data: **Teks**
+- Jumlah data: 6335
+- Train: 4434
+Validation: 950
+Test: 951
 - Label:
   - `0` → Fake
   - `1` → Real
@@ -87,7 +91,10 @@ Menggabungkan prediksi dari LSTM, BERT, dan DistilBERT.
 ---
 
 ## 📊 Evaluasi Model
-
+Evaluasi dilakukan menggunakan data testing dengan metrik:
+- Confusion Matrix
+- Grafik Loss dan Accuracy
+  
 | Model | Akurasi | Analisis |
 |------|--------|----------|
 | LSTM | 81% | Baseline, performa cukup |
