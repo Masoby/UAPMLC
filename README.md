@@ -63,8 +63,22 @@ Model LSTM digunakan sebagai baseline untuk membandingkan performa dengan model 
 
   **Plot Accuracy & Loss**
 
-  ![Plot Accuracy & Loss LSTM](assets/lstm acc loss.png)
+  ![Plot Accuracy & Loss LSTM](assets/lstmaccloss.png)
 
+Berdasarkan grafik Loss dan Accuracy, kita dapat mengamati perilaku model selama 5 epoch:
+
+Loss: Train loss terus menurun secara konsisten, namun Validation Loss mulai meningkat setelah epoch ke-2. Ini merupakan indikasi awal bahwa model mulai mengalami overfitting.
+
+Accuracy: Akurasi pelatihan mencapai >90%, sementara Validation Accuracy mengalami penurunan (dari puncaknya di ~81% turun menjadi ~77%). Hal ini menunjukkan model belajar sangat baik pada data training tetapi sedikit kesulitan dalam melakukan generalisasi pada data baru yang belum pernah dilihat sebelumnya.
+
+**Confusion Matrix**
+
+ ![Confusion Matrix LSTM](assets/confusionmatrixlstm.png)
+
+Model sangat baik dalam mendeteksi berita FAKE (420 benar).
+
+Namun, terdapat cukup banyak berita REAL yang salah diklasifikasikan sebagai FAKE (126 kasus). Hal ini menunjukkan adanya bias tertentu atau kebutuhan akan penyeimbangan dataset lebih lanjut.
+ 
 ---
 
 ### 2️⃣ BERT
@@ -74,6 +88,22 @@ Model **BERT pretrained** digunakan dengan fine-tuning pada dataset fake news.
 - Representasi konteks sangat kuat
 - Performa terbaik pada eksperimen
 - Akurasi mencapai **96%**
+  
+**Plot Bert Loss**
+
+  ![Plot Bert Loss](assets/bertloss.png)
+  
+Grafik Loss Grafik menunjukkan penurunan train loss yang sangat tajam hingga mendekati angka nol pada epoch ke-7. Namun, validation loss mulai menunjukkan tren meningkat setelah epoch ke-1. Hal ini mengindikasikan bahwa model BERT mengalami overfitting yang cukup dini, di mana model belajar terlalu spesifik pada data latihan namun mulai kehilangan kemampuan generalisasi pada data validasi seiring bertambahnya epoch.
+
+**Confusion Matrix**
+
+![Confusion Matrix BERT](assets/confusionmatrixbert.png)
+
+Meskipun terdapat indikasi overfitting, model ini memberikan hasil prediksi yang sangat akurat pada data uji:
+
+Prediksi Tepat: Berhasil mengklasifikasikan 442 berita FAKE dan 474 berita REAL dengan benar.
+
+Kesalahan Minim: Hanya terdapat 2 berita REAL yang salah terdeteksi sebagai FAKE, dan 33 berita FAKE yang terdeteksi sebagai REAL.
 
 ---
 
@@ -84,6 +114,20 @@ Versi ringan dari BERT dengan performa yang sebanding.
 - Lebih cepat
 - Lebih ringan
 - Akurasi setara dengan BERT (**96%**)
+
+**Plot DistilBert Loss**
+
+  ![Plot DistilBert Loss](assets/distilbertloss.png)
+  
+grafik DistilBERT Loss menunjukkan penurunan train loss yang sangat konsisten hingga mendekati nol. Namun, terdapat kenaikan pada validation loss setelah epoch ke-1. Hal ini menunjukkan adanya indikasi overfitting, di mana model sangat optimal pada data latih namun mulai mengalami penurunan performa generalisasi pada data validasi.
+
+**Confusion Matrix**
+
+![Confusion Matrix DistilBERT](assets/confusionmatrixdistilbert.png)
+
+Prediksi Benar: Model berhasil menebak 446 data FAKE dan 468 data REAL dengan tepat.
+
+Kesalahan Prediksi: Hanya terjadi 8 kesalahan pada data REAL (terbaca FAKE) dan 29 kesalahan pada data FAKE (terbaca REAL).
 
 ---
 
