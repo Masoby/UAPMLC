@@ -25,6 +25,8 @@ Dataset yang digunakan merupakan dataset publik **Fake News Detection** yang ban
 
 Dataset berisi teks berita berbahasa Inggris yang telah diberi label **fake** dan **real**.
 
+🔗https://www.kaggle.com/datasets/jillanisofttech/fake-or-real-news?resource=download
+
 ### Deskripsi Dataset
 - Format data: **Teks**
 - Jumlah data: 6335
@@ -58,6 +60,10 @@ Model LSTM digunakan sebagai baseline untuk membandingkan performa dengan model 
 - Dibangun tanpa pretrained embedding
 - Performa cukup baik namun terbatas
 - Akurasi sekitar **81%**
+
+  **Plot Accuracy & Loss**
+
+  ![Plot Accuracy & Loss LSTM](assets/lstm acc loss.png)
 
 ---
 
