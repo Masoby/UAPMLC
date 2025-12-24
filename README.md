@@ -68,7 +68,6 @@ Matplotlib
 
 Pillow
 
-📁 Struktur Folder
 UAPMLC/
 │
 ├── project/
