@@ -1,124 +1,139 @@
-📰 Fake News Detection Dashboard
-🌐 Dashboard Website
-Aplikasi web dikembangkan menggunakan Streamlit dengan fitur:
+# 📰 Fake News Detection Dashboard
 
-Pemilihan model klasifikasi
-Upload gambar kucing
-Prediksi ras kucing
-Confidence score
-Tabel probabilitas seluruh kelas
-UAP Machine Learning
+## 📌 Deskripsi Proyek
+Proyek ini bertujuan untuk membangun sistem **deteksi berita palsu (Fake News Detection)** berbasis  
+**Natural Language Processing (NLP)** dan **Deep Learning**.
 
-📌 Deskripsi Proyek
+Sistem mampu mengklasifikasikan teks berita ke dalam dua kelas:
+- **FAKE**
+- **REAL**
 
-Project ini merupakan aplikasi Fake News Detection berbasis Machine Learning & Deep Learning yang dibuat untuk memenuhi tugas Ujian Akhir Praktikum (UAP).
-Aplikasi dibangun menggunakan Streamlit dan mendukung beberapa model klasifikasi teks untuk mendeteksi apakah sebuah berita tergolong FAKE atau REAL.
+Proyek ini membandingkan performa beberapa model, yaitu:
+1. **LSTM (Baseline Deep Learning)**
+2. **BERT (Transfer Learning)**
+3. **DistilBERT (Transfer Learning)**
+4. **Ensemble (Majority Voting)**
 
-Model yang digunakan:
+Selain pelatihan model, proyek ini dilengkapi dengan **dashboard berbasis Streamlit** yang memungkinkan pengguna melakukan prediksi berita secara interaktif melalui website.
 
-LSTM (Deep Learning)
+---
 
-BERT
+## 📂 Dataset
 
-DistilBERT
+### Sumber Dataset
+Dataset yang digunakan merupakan dataset publik **Fake News Detection** yang banyak digunakan dalam penelitian NLP.
 
-Ensemble (Majority Voting)
+Dataset berisi teks berita berbahasa Inggris yang telah diberi label **fake** dan **real**.
 
-🎯 Tujuan
+### Deskripsi Dataset
+- Format data: **Teks**
+- Label:
+  - `0` → Fake
+  - `1` → Real
+- Digunakan untuk klasifikasi biner
 
-Mengimplementasikan model Machine Learning & Deep Learning untuk klasifikasi teks
+---
 
-Membandingkan performa beberapa model NLP
+## 🔧 Preprocessing Data
+Tahapan preprocessing teks yang dilakukan:
+1. Case folding (lowercase)
+2. Tokenisasi
+3. Padding sequence (max length = 300)
+4. Penghapusan noise (opsional)
 
-Menyediakan dashboard interaktif berbasis web menggunakan Streamlit
+Preprocessing bertujuan untuk meningkatkan kualitas input dan performa model.
 
-🧠 Model & Akurasi
-Model	Akurasi
-LSTM	81%
-BERT	96%
-DistilBERT	96%
-Ensemble	Lebih stabil (Majority Vote)
+---
 
-🏆 Best Model: BERT
+## 🧠 Model yang Digunakan
 
-⚙️ Fitur Aplikasi
+### 1️⃣ LSTM (Baseline)
+Model LSTM digunakan sebagai baseline untuk membandingkan performa dengan model transformer.
 
-🔍 Prediksi berita satu teks
+**Karakteristik:**
+- Dibangun tanpa pretrained embedding
+- Performa cukup baik namun terbatas
+- Akurasi sekitar **81%**
 
-📂 Prediksi batch dari file CSV
+---
 
-📊 Menampilkan confidence score
+### 2️⃣ BERT
+Model **BERT pretrained** digunakan dengan fine-tuning pada dataset fake news.
 
-🔁 Ensemble prediction (majority voting)
+**Keunggulan:**
+- Representasi konteks sangat kuat
+- Performa terbaik pada eksperimen
+- Akurasi mencapai **96%**
 
-🖥️ Tampilan dashboard interaktif
+---
 
-🛠️ Teknologi yang Digunakan
+### 3️⃣ DistilBERT
+Versi ringan dari BERT dengan performa yang sebanding.
 
-Python
+**Keunggulan:**
+- Lebih cepat
+- Lebih ringan
+- Akurasi setara dengan BERT (**96%**)
 
-Streamlit
+---
 
-TensorFlow / Keras
+### 4️⃣ Ensemble (Majority Voting)
+Menggabungkan prediksi dari LSTM, BERT, dan DistilBERT.
 
-PyTorch
+**Tujuan:**
+- Meningkatkan stabilitas prediksi
+- Mengurangi bias model tunggal
 
-Transformers (HuggingFace)
+---
 
-NumPy
+## 📊 Evaluasi Model
 
-Pandas
+| Model | Akurasi | Analisis |
+|------|--------|----------|
+| LSTM | 81% | Baseline, performa cukup |
+| BERT | 96% | Performa terbaik |
+| DistilBERT | 96% | Ringan & efisien |
+| Ensemble | Stabil | Prediksi lebih robust |
 
-Scikit-learn
+**Kesimpulan:**  
+Model **BERT dan DistilBERT** memberikan performa terbaik, sedangkan ensemble meningkatkan kestabilan prediksi.
 
-Matplotlib
+---
 
-Pillow
+## 🌐 Dashboard Website
+Dashboard dikembangkan menggunakan **Streamlit** dengan fitur:
+- Input teks berita
+- Upload file CSV (batch prediction)
+- Pemilihan model
+- Confidence score
+- Download hasil prediksi
 
+---
+
+## ▶️ Cara Menjalankan Aplikasi
+
+```bash
+git clone https://github.com/Masoby/UAPMLC.git
+cd UAPMLC
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+streamlit run project/app.py
+
+```
+---
+## 📁 Struktur Folder
+```text
 UAPMLC/
-│
 ├── project/
 │   ├── app.py
 │   ├── models/
 │   │   ├── lstm/
-│   │   ├── bert/          # tidak disertakan (large files)
-│   │   └── distilbert/    # tidak disertakan (large files)
+│   │   ├── bert/          # tidak disertakan (file besar)
+│   │   └── distilbert/    # tidak disertakan (file besar)
 │   ├── assets/
 │   │   └── as.jpg
 │
 ├── requirements.txt
 ├── README.md
 └── .gitignore
-
-📦 Instalasi
-
-Clone repository:
-
-git clone https://github.com/Masoby/UAPMLC.git
-cd UAPMLC
-
-
-(Opsional) Buat virtual environment:
-
-python -m venv venv
-venv\Scripts\activate
-
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-▶️ Menjalankan Aplikasi
-streamlit run project/app.py
-
-
-Aplikasi akan berjalan di browser:
-
-http://localhost:8501
-
-👤 Author
-
-Nama: Mahrus Mahbubi
-NIM: 202210370311411
-Mata Kuliah: Machine Learning
-Tugas: UAP
